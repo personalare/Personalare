@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Subtle charcoal gradient for brand badge -->
+    <radialGradient id="chBadgeBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2D2E32" />
+      <stop offset="100%" stop-color="#222326" />
+    </radialGradient>
+    <linearGradient id="chGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFBE3B" />
+      <stop offset="50%" stop-color="#F3A824" />
+      <stop offset="100%" stop-color="#D98207" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark charcoal background circle -->
+  <circle cx="250" cy="250" r="230" fill="url(#chBadgeBg)" />
+
+  <!-- Outer concentric orbital swirl rings in signature warm amber gold -->
+  <g fill="none" stroke="url(#chGoldGrad)" stroke-linecap="round" opacity="0.95">
+    <!-- Concentric spiral strokes evoking the signature swirling vortex -->
+    <path d="M 95 240 A 155 155 0 1 0 395 265" stroke-width="1.8" />
+    <path d="M 100 248 A 150 150 0 1 0 390 272" stroke-width="2.2" />
+    <path d="M 106 256 A 144 144 0 1 0 384 280" stroke-width="2.5" />
+    <path d="M 112 264 A 138 138 0 1 0 378 288" stroke-width="2.6" />
+    <path d="M 118 272 A 132 132 0 1 0 372 296" stroke-width="2.4" />
+    <path d="M 125 280 A 126 126 0 1 0 365 304" stroke-width="2.0" />
+    <path d="M 132 288 A 120 120 0 1 0 358 312" stroke-width="1.6" />
+    
+    <!-- Top left accent arcs completing the swirl -->
+    <path d="M 160 135 A 150 150 0 0 1 350 155" stroke-width="1.5" stroke-dasharray="140 15" />
+    <path d="M 152 142 A 144 144 0 0 1 342 162" stroke-width="2.0" stroke-dasharray="120 20" />
+    <path d="M 145 150 A 138 138 0 0 1 334 170" stroke-width="1.8" />
+  </g>
+
+  <!-- Mountain Cottage Villa Silhouette & 4 Glowing Light Dots -->
+  <g stroke="url(#chGoldGrad)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left chimney -->
+    <path d="M 175 228 V 210 H 188 V 220" stroke-width="4.5" />
+    <!-- Left main roofline up to ridge -->
+    <path d="M 156 242 L 214 203" stroke-width="5" />
+    <!-- Primary ridge down to right -->
+    <path d="M 214 203 L 274 242" stroke-width="5" />
+    <!-- Secondary overlapping right ridge line -->
+    <path d="M 228 203 L 296 242" stroke-width="5" />
+  </g>
+
+  <!-- 4 circular window / warmth dots (2x2 grid) in gold -->
+  <g fill="url(#chGoldGrad)">
+    <circle cx="210" cy="223" r="5" />
+    <circle cx="226" cy="223" r="5" />
+    <circle cx="210" cy="239" r="5" />
+    <circle cx="226" cy="239" r="5" />
+  </g>
+
+  <!-- CLOUD HEAVEN Typography in pure white -->
+  <text 
+    x="250" 
+    y="266" 
+    text-anchor="middle" 
+    fill="#FFFFFF" 
+    font-family="'Plus Jakarta Sans', 'Montserrat', -apple-system, sans-serif" 
+    font-weight="800" 
+    font-size="21.5" 
+    letter-spacing="2.5"
+  >
+    CLOUD HEAVEN
+  </text>
+
+  <!-- RESORT Typography tracked out in clean white -->
+  <text 
+    x="250" 
+    y="286" 
+    text-anchor="middle" 
+    fill="#FFFFFF" 
+    font-family="'Plus Jakarta Sans', 'Montserrat', -apple-system, sans-serif" 
+    font-weight="600" 
+    font-size="12.5" 
+    letter-spacing="6.5"
+  >
+    RESORT
+  </text>
+</svg>

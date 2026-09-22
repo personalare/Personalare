@@ -1,0 +1,6 @@
+{
+  "name": "Cloud Heaven - Vagamon Resort & Villa",
+  "description": "Luxury private villa booking with infinity pool in Vagamon hills. Features 2BHK & 3BHK tiered pricing, friend referral program with ₹1,000 guest discounts and 500 referrer loyalty points, printable PDF Welcome Guide, post-stay verified guest reviews with loyalty rewards, customer portal, and admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

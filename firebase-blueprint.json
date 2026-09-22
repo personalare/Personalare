@@ -1,0 +1,163 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "Guest villa booking and reservation records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bookingNumber": { "type": "string" },
+        "villaType": { "type": "string", "enum": ["2bhk", "3bhk"] },
+        "checkIn": { "type": "string" },
+        "checkOut": { "type": "string" },
+        "adults": { "type": "number" },
+        "children": { "type": "number" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "userPhone": { "type": "string" },
+        "finalAmount": { "type": "number" },
+        "paymentStatus": { "type": "string" },
+        "bookingStatus": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "checkIn", "checkOut", "userName", "userEmail", "finalAmount"]
+    },
+    "BlockedDate": {
+      "title": "BlockedDate",
+      "description": "Dates unavailable or blocked for booking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "reason": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "date"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Guest ratings and verified reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userName": { "type": "string" },
+        "userLocation": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "date": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "villaType": { "type": "string" }
+      },
+      "required": ["id", "userName", "rating", "comment"]
+    },
+    "Referral": {
+      "title": "Referral",
+      "description": "Customer referral points and referral rewards",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "referrerUserId": { "type": "string" },
+        "referredUserId": { "type": "string" },
+        "bookingId": { "type": "string" },
+        "pointsAwarded": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "referralCode", "referrerUserId", "referredUserId", "bookingId", "pointsAwarded"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Registered guest or administrator user profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "VillaSettings": {
+      "title": "VillaSettings",
+      "description": "Villa configuration and pricing",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "tagline": { "type": "string" },
+        "description": { "type": "string" },
+        "pricePerNight2BHK": { "type": "number" },
+        "pricePerNight3BHK": { "type": "number" }
+      },
+      "required": ["name"]
+    },
+    "ContactSettings": {
+      "title": "ContactSettings",
+      "description": "Estate contact information and directions",
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" }
+      },
+      "required": ["phone", "email"]
+    },
+    "GallerySettings": {
+      "title": "GallerySettings",
+      "description": "Curated photo collection for the estate gallery",
+      "type": "object",
+      "properties": {
+        "photos": { "type": "string" }
+      }
+    },
+    "ConnectionTest": {
+      "title": "ConnectionTest",
+      "description": "Connection test ping document",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Guest reservations for Cloud Heaven Villa"
+    },
+    "/blocked_dates/{dateId}": {
+      "schema": "BlockedDate",
+      "description": "Calendar dates blocked by administration"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Guest verified reviews and star ratings"
+    },
+    "/referrals/{referralId}": {
+      "schema": "Referral",
+      "description": "Customer referral points and redemption records"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and guest authentication accounts"
+    },
+    "/settings/villa": {
+      "schema": "VillaSettings",
+      "description": "Villa property details and base pricing"
+    },
+    "/settings/contact": {
+      "schema": "ContactSettings",
+      "description": "Direct contact numbers, WhatsApp, and location address"
+    },
+    "/settings/gallery": {
+      "schema": "GallerySettings",
+      "description": "Curated photo collection for the estate gallery"
+    },
+    "/test/{testId}": {
+      "schema": "ConnectionTest",
+      "description": "Firestore connection validation test document"
+    }
+  }
+}

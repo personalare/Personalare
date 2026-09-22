@@ -1,0 +1,101 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny all undefined documents
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'personalaretech@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // Connection testing
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+
+    // Villa settings & public details
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if settingId in ['villa', 'contact', 'gallery'];
+    }
+
+    // Blocked dates for calendar availability
+    match /blocked_dates/{dateId} {
+      allow read: if true;
+      allow create, update: if isValidId(dateId)
+        && incoming().date is string
+        && incoming().date.size() == 10;
+      allow delete: if true;
+    }
+
+    // Guest villa reservations
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create: if isValidId(bookingId)
+        && incoming().checkIn is string
+        && incoming().checkOut is string
+        && incoming().userName is string
+        && incoming().userEmail is string
+        && incoming().finalAmount is number
+        && incoming().finalAmount >= 0;
+      allow update: if isValidId(bookingId)
+        && incoming().finalAmount is number
+        && incoming().finalAmount >= 0;
+      allow delete: if true;
+    }
+
+    // Verified reviews
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isValidId(reviewId)
+        && incoming().rating is number
+        && incoming().rating >= 1
+        && incoming().rating <= 5
+        && incoming().userName is string;
+      allow update, delete: if true;
+    }
+
+    // Customer referral records
+    match /referrals/{referralId} {
+      allow read: if true;
+      allow create: if isValidId(referralId)
+        && incoming().referralCode is string
+        && incoming().referralCode.size() > 0
+        && incoming().referrerUserId is string
+        && incoming().referredUserId is string
+        && incoming().bookingId is string
+        && incoming().pointsAwarded is number
+        && incoming().referrerUserId != incoming().referredUserId;
+      allow update: if true;
+      allow delete: if false;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if isValidId(userId)
+        && incoming().email is string
+        && incoming().name is string;
+      allow delete: if false;
+    }
+  }
+}
+
